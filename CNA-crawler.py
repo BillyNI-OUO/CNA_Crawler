@@ -6,7 +6,7 @@ import sys
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
 url = "https://www.cna.com.tw/news/aipl/"#202107150041.aspx"
-batchSize = 1000
+batchSize = 400
 
 def dateGenerator(date):#20210715
 	day = int(date[6:])+1
@@ -55,14 +55,14 @@ def crawling(newsUrl):
 
 		#print(summarization)
 		#print(article)
-		print(f'{{"summarization": "{summarization}", "article": "{article}", "title": "{title.string}"}}\n')
+		#print(f'{{"summarization": "{summarization}", "article": "{article}", "title": "{title.string}"}}\n')
 		return f'{{"summarization": "{summarization}", "article": "{article}", "title": "{title.string}"}}\n'
 	except Exception as e:
-		sys.stderr.write(str(e)+"\n")
+		#sys.stderr.write(str(e)+"\n")
 		return None
 
-date = '20190101'
-while date < '20210715':
+date = '20191001'
+while date < '20200101':
 	parm = date+'0001.aspx'
 	batchText = ''
 	for i in range(batchSize):
@@ -72,10 +72,10 @@ while date < '20210715':
 		text = crawling(newsUrl)
 		if text != None:
 			batchText += text
-	date = dateGenerator(date)
-	with open(date+'.txt', 'a+') as fp:
+	
+	with open('./CNA_News/'+date+'.txt', 'a+') as fp:
 		fp.write(batchText)
-
+	date = dateGenerator(date)
 """
 
 
