@@ -61,8 +61,8 @@ def crawling(newsUrl):
 		#sys.stderr.write(str(e)+"\n")
 		return None
 
-date = '20191003'
-while date < '20200101':
+date = '20210101'
+while date < '20210720':
 	parm = date+'0001.aspx'
 	batchText = ''
 	for i in range(batchSize):
